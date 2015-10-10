@@ -1,16 +1,19 @@
--- DROP TABLE if EXISTS Users;
--- DROP TABLE if EXISTS Songs;
--- DROP TABLE if EXISTS Playlists;
+DROP TABLE if EXISTS Users;
+DROP TABLE if EXISTS Songs;
+DROP TABLE if EXISTS Playlists;
+
 CREATE TABLE Users
 (id INTEGER NOT NULL PRIMARY KEY,
- name VARCHAR(256) NOT NULL);
+ name VARCHAR(256) NOT NULL,
+ playlistId INTEGER);
+
 CREATE TABLE Songs
 (songId INTEGER NOT NULL,
- userId INTEGER NOT NULL References Users(id),
  songTitle VARCHAR(256) NOT NULL,
  songArtist VARCHAR(256),
- playlistId INTEGER NOT NULL);
+ songGenre VARCHAR(256));
+
 CREATE TABLE Playlists
- (userId INTEGER NOT NULL REFERENCES Users(id),
- playlistId INTEGER NOT NULL,
+ (playlistId INTEGER NOT NULL,
  songId INTEGER NOT NULL);
+
