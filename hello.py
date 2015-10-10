@@ -30,7 +30,6 @@ def main():
         print 'Connected to database'
     except:
         print "Database not ready to be used"
-    print 'print success'
     connect.close()
     return "Hello World! "
 
