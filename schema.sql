@@ -3,13 +3,15 @@ DROP TABLE if EXISTS Songs;
 DROP TABLE if EXISTS Playlists;
 
 CREATE TABLE Users
-(id INTEGER NOT NULL PRIMARY KEY,
+(id INTEGER NOT NULL,
  name VARCHAR(256) NOT NULL,
- playlistId INTEGER);
+ api_token VARCHAR(256),
+ playlistId INTEGER,
+ UNIQUE(id, playlistId));
 
 CREATE TABLE Songs
 (songId INTEGER NOT NULL,
- songTitle VARCHAR(256) NOT NULL,
+ songTitle VARCHAR(256),
  songArtist VARCHAR(256),
  songGenre VARCHAR(256));
 
