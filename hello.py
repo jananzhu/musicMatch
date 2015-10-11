@@ -5,6 +5,8 @@ Created on Oct 10, 2015
 '''
 import db
 from flask import Flask
+import spotipy
+import spotipy.util as util
 
 
 '''Configuring local Postgres Database on Shell
@@ -24,15 +26,23 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    try:
-        connect = db.connect_db()
-        db.init_db(connect)
-        print 'Connected to database'
-    except:
-        print "Database not ready to be used"
+#    try:
+#        connect = db.connect_db()
+#        db.init_db(connect)
+#        print 'Connected to database'
+#    except:
+#        print "Database not ready to be used"
+    username = '1231664157'
+    scope = 'playlist-read-private playlist-read-collaborative'
+    token = util.prompt_for_user_token(username,scope)
     print 'print success'
-    connect.close()
+#    connect.close()
     return "Hello World! "
+
+@app.route("/redirect")
+def redirect():
+  print 'redirected'
+  return 'redirected'
 
 
 if __name__ == "__main__":
