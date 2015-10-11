@@ -29,8 +29,6 @@ body {
   height: 100%;
   background-color: #333;
   font-family: 'Open Sans', sans-serif;
-  font-size: 300;
-  font-weight: lighter;
 
 }
 body {
@@ -61,23 +59,20 @@ body {
 .inner {
   padding: 30px;
 }
-
-.inner-cover {
-  margin-top:10px;
-  margin-bottom:10px;
-}
-.lead > h1{
+.inner-cover > h1{
   font-family: 'Pacifico', cursive;
-  font-size:600;
+  font-size: 100px;
 }
+
 /*
  * Header
  */
 .masthead-brand {
-
-  font-size: 400;
   margin-top: 10px;
   margin-bottom: 10px;
+  border-top: 25px;
+  border-bottom: 25px;
+  border: 3px solid #fff;
 }
 
 .masthead-nav > li {
@@ -114,9 +109,6 @@ body {
   }
   .masthead-nav {
     float: right;
-  }
-  .inner-cover{
-    float: center;
   }
 }
 
