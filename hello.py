@@ -4,8 +4,8 @@ Created on Oct 10, 2015
 @author: catzhangy1
 '''
 import db
+from flask import Flask, render_template, flash, redirect, url_for, Blueprint, g,request
 import json
-from flask import Flask, redirect, request, g
 import os
 import requests
 import urllib
@@ -24,13 +24,17 @@ CLIENT_SECRET = os.environ.get('SPOTIPY_CLIENT_SECRET')
 REDIRECT_URI = os.environ.get('SPOTIPY_REDIRECT_URI') 
 SCOPE = 'playlist-read-private playlist-read-collaborative'
 
-
 '''Configuring local Postgres Database on Shell
 postgres -D /usr/local/var/postgres -- starts up postgrespo
 createuser admin -- create admin user
 createdb -U admin testdb'''
 
 app = Flask(__name__)
+
+# profile = Blueprint('profile', __name__,
+#                     template_folder='templates',
+#                     static_folder='static')
+# app.register_blueprint(profile)
 # app.config.from_object(__name__)
 # # DATABASE = '/tmp/flaskr.db'
 # DBNAME = 'testdb'
@@ -57,7 +61,17 @@ def main():
 #        print 'Connected to database'
 #    except:
 #        print "Database not ready to be used"
+    try:
+        connect = db.connect_db()
+        db.init_db(connect)
+        print 'Connected to database'
+    except:
+        print "Database not ready to be used"
+#     username = '1231664157'
+#     scope = 'playlist-read-private playlist-read-collaborative'
+#     token = util.prompt_for_user_token(username,scope)
 #    connect.close()
+#    return render_template('index.html', name='hello')
     url_args = "&".join(["{}={}".format(key,urllib.quote(val)) for key,val in auth_query_parameters.iteritems()])
     auth_url = "{}/?{}".format(SPOTIFY_AUTH_URL, url_args)
     print auth_url
@@ -122,13 +136,20 @@ def callback():
             artists = track['artists']
             mainArtist = artists[0]
             songLists.append({'songId' : track['id'], 'songTitle' : track['name'], 'songArtist' : mainArtist['name'], 'songGenre' : 'dummy'})
-
+    print playlists
     #what page comes next?
     return 'it works!'
+
 
 @app.route("/hellotest")
 def hellotest():
     return 'hello world'
+
+@app.route("/login")
+def login():
+  print 'redirected'
+  return 'redirected'
+
 
 if __name__ == "__main__":
     app.run(debug=True)
