@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="MusicMatch" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Bringing music lovers together">
+        <meta name="author" content="Janan and Cat">
+        <link href='https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:400,300' rel='stylesheet' type='text/css'> 
+        <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+<!--         <link rel="stylesheet" type="text/css" href="static/css/styles.css"> -->
+        <title>MusicMatch</title>
+    </head>
+    
+
+    <body
+        <div class="site-wrapper">
+            <div class="site-wrapper-inner">
+                <div class = "cover-container">
+<!--                     this contains the navigation bar -->
+                    <h3 class = "masthead-brand">MM</h3>
+                        <nav>
+                            <ul class="nav masthead-nav">
+                                <li class="active"><a href="#">Home</a></li>
+                                <li><a href="#">Messages</a></li>
+                                <li><a href="#">Profile</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+<!--                     main content body -->
+                    <div class="inner cover">
+                        <p class ="lead">
+        
+                            Music Match
+        
+                        </p>
+                        <p class="lead">Bringing music lovers together. You in?</p>
+                        <p class="lead">
+                          <a href="#" class="btn btn-lg btn-default">Find my match</a>
+                        </p>
+                    </div>
+
+
+<!--                         footer -->
+
+                    <div class="mastfoot">
+                        <div class="inner">
+                            <p>Main page template inspired by <a href="http://getbootstrap.com">Bootstrap</a>. HackNC 2015. </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+<!--         <div class="blog-masthead">
+            <div class="container">
+                <nav class="blog-nav">
+                    <a class="blog-nav-item" href="#" ng-class="{active: isActive('/')}">Home</a>
+                    <a class="blog-nav-item" href="#/sessions/create" ng-hide="isLoggedIn" ng-class="{active: isActive('/sessions/create')}">Login</a>
+                    <a class="blog-nav-item" href="#/sessions/destroy" ng-show="isLoggedIn">Logout</a>
+                    <a class="blog-nav-item" href="#/users/create" ng-class="{active: isActive('/users/create')}">Register</a>
+                    <a class="blog-nav-item" href="#/posts/create" ng-show="isLoggedIn" ng-class="{active: isActive('/posts/create')}">Create a post</a>
+                </nav>
+            </div>
+        </div> -->
+
+        <div class="container main-view">
+<!--             container for the main view -->
+            <div ng-view></div>
+
+        </div><!-- /.container -->
+    </body>
+</html>

@@ -15,7 +15,6 @@ def init_db(db):
         with db.cursor() as cur:
             try:
                 cur.execute(open("schema.sql", "r").read())
-                cur.execute("SELECT * FROM USERS;")
                 print cur.fetchall()
             except:
                 print "DB Initialization failed"
