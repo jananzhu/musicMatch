@@ -22,7 +22,6 @@ SPOTIFY_API_URL = "{}/{}".format(SPOTIFY_API_BASE_URL, API_VERSION)
 CLIENT_ID = os.environ.get('SPOTIPY_CLIENT_ID')
 CLIENT_SECRET = os.environ.get('SPOTIPY_CLIENT_SECRET')
 REDIRECT_URI = os.environ.get('SPOTIPY_REDIRECT_URI') 
-username = '1231664157'
 SCOPE = 'playlist-read-private playlist-read-collaborative'
 
 
@@ -99,7 +98,19 @@ def callback():
     playlist_api_endpoint="{}/users/{}/playlists".format(SPOTIFY_API_URL,user_id)
     playlist_response = requests.get(playlist_api_endpoint, headers=authorization_header)
     playlist_data = json.loads(playlist_response.text)
-    print playlist_data
+    playlist_data = playlist_data['items']
+    playlist_data_ids = [x['id'] for x in playlist_data]
+    user_dict = []
+
+    
+    for id in playlist_data_ids
+        user_dict.append({'id':user_id, 'name':user_name,'playlistId':id})
+        playlist_api_endpoint = "{}/users/{}/playlists/{}".format(SPOTIFY_API_URL,user_id,id)
+        playlist_response = requests.get(playlist_api_endpoint, headers=authorization_header)
+        current_playlist_data = json.loads(playlist_response.text)
+        current_playlist_data = current_playlist_data['items']
+
+        
 
     return 'it works!'
 
