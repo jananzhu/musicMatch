@@ -31,14 +31,14 @@ createuser admin -- create admin user
 createdb -U admin testdb'''
 
 app = Flask(__name__)
-# app.config.from_object(__name__)
-# # DATABASE = '/tmp/flaskr.db'
-# DBNAME = 'testdb'
-# DEBUG = True
-# # SECRET_KEY = 'development key'
-# USERNAME = 'admin'
-# HOST = 'localhost'
-# PASSWORD = 'default'
+#app.config.from_object(__name__)
+#DATABASE = '/tmp/flaskr.db'
+#DBNAME = 'testdb'
+#DEBUG = True
+#SECRET_KEY = 'development key'
+#USERNAME = 'admin'
+#HOST = 'localhost'
+#PASSWORD = 'default'
 
 auth_query_parameters = {
     "response_type": "code",
@@ -134,11 +134,11 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 
-def compatibilityMatcher(user_set_dict,list_other_set_dict)
+def compatibilityMatcher(user_set_dict,list_other_set_dict):
     lst = list_other_set_dict.keys()
-    lst = sorted(lst,cmp=lambda x,y: similarityToUserSetComparison(user_set_dict['songs'],x['songs'],y['songs']) similarityToUserSetComparison(user_set_dict['artists'],x['artists',y['artists']]))
+    lst = sorted(lst,cmp=lambda x,y: similarityToUserSetComparison(user_set_dict['songs'],x['songs'],y['songs']) + similarityToUserSetComparison(user_set_dict['artists'],x['artists',y['artists']]))
     return lst
 
 #Helper function for comparing users based on similarity to user set
-def similarityToUserSetComparison(user_set,set_A,set_B)
+def similarityToUserSetComparison(user_set,set_A,set_B):
     return len(set_A.intersection(user_set)) - len(set_B.intersection(user_set))
