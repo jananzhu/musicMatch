@@ -55,3 +55,6 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# API keys
+apikey.txt
