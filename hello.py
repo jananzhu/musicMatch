@@ -22,7 +22,6 @@ SPOTIFY_API_URL = "{}/{}".format(SPOTIFY_API_BASE_URL, API_VERSION)
 CLIENT_ID = os.environ.get('SPOTIPY_CLIENT_ID')
 CLIENT_SECRET = os.environ.get('SPOTIPY_CLIENT_SECRET')
 REDIRECT_URI = os.environ.get('SPOTIPY_REDIRECT_URI') 
-username = '1231664157'
 SCOPE = 'playlist-read-private playlist-read-collaborative'
 
 
@@ -99,8 +98,32 @@ def callback():
     playlist_api_endpoint="{}/users/{}/playlists".format(SPOTIFY_API_URL,user_id)
     playlist_response = requests.get(playlist_api_endpoint, headers=authorization_header)
     playlist_data = json.loads(playlist_response.text)
-    print playlist_data
+    playlist_data = playlist_data['items']
+    playlist_data_ids = [x['id'] for x in playlist_data]
+    playlist_owners = [x['owner'] for x in playlist_data]
+    playlist_owners = [x['id'] for x in playlist_owners]
 
+    user_dict = []
+    playlists =[]
+    songLists = []
+
+
+    for i in range(len(playlist_data)): 
+        user_dict.append({'id':user_id, 'name':user_name,'playlistId':playlist_data_ids[i]})
+        owner_id = playlist_owners[i]
+        playlist_api_endpoint = "{}/users/{}/playlists/{}".format(SPOTIFY_API_URL,owner_id,playlist_data_ids[i])
+        playlist_response = requests.get(playlist_api_endpoint, headers=authorization_header)
+        current_playlist_data = json.loads(playlist_response.text)
+        current_playlist_data_tracks = current_playlist_data['tracks']
+        current_playlist_data_tracks = current_playlist_data_tracks['items']
+        current_playlist_data_tracks = [x['track'] for x in current_playlist_data_tracks]
+        for track in current_playlist_data_tracks:
+            playlists.append({'playlistId': playlist_data_ids[i], 'songId': track['id']})
+            artists = track['artists']
+            mainArtist = artists[0]
+            songLists.append({'songId' : track['id'], 'songTitle' : track['name'], 'songArtist' : mainArtist['name'], 'songGenre' : 'dummy'})
+
+    #what page comes next?
     return 'it works!'
 
 @app.route("/hellotest")
