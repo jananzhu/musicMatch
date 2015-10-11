@@ -61,6 +61,15 @@ def main():
 #        print 'Connected to database'
 #    except:
 #        print "Database not ready to be used"
+    try:
+        connect = db.connect_db()
+        db.init_db(connect)
+        print 'Connected to database'
+    except:
+        print "Database not ready to be used"
+#     username = '1231664157'
+#     scope = 'playlist-read-private playlist-read-collaborative'
+#     token = util.prompt_for_user_token(username,scope)
 #    connect.close()
 #    return render_template('index.html', name='hello')
     url_args = "&".join(["{}={}".format(key,urllib.quote(val)) for key,val in auth_query_parameters.iteritems()])
@@ -131,9 +140,16 @@ def callback():
     #what page comes next?
     return 'it works!'
 
+
 @app.route("/hellotest")
 def hellotest():
     return 'hello world'
+
+@app.route("/login")
+def login():
+  print 'redirected'
+  return 'redirected'
+
 
 if __name__ == "__main__":
     app.run(debug=True)
