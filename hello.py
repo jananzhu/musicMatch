@@ -31,16 +31,15 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-#    try:
-#        connect = db.connect_db()
-#        db.init_db(connect)
-#        print 'Connected to database'
-#    except:
-#        print "Database not ready to be used"
-    username = '1231664157'
-    scope = 'playlist-read-private playlist-read-collaborative'
-    token = util.prompt_for_user_token(username,scope)
-    print 'print success'
+    try:
+        connect = db.connect_db()
+        db.init_db(connect)
+        print 'Connected to database'
+    except:
+        print "Database not ready to be used"
+#     username = '1231664157'
+#     scope = 'playlist-read-private playlist-read-collaborative'
+#     token = util.prompt_for_user_token(username,scope)
 #    connect.close()
     return render_template('index.html', name='hello')
 
@@ -49,6 +48,10 @@ def redirect():
   print 'redirected'
   return 'redirected'
 
+@app.route("/login")
+def login():
+  print 'redirected'
+  return 'redirected'
 
 if __name__ == "__main__":
     app.run()
