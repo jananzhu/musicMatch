@@ -132,3 +132,13 @@ def hellotest():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+def compatibilityMatcher(user_set_dict,list_other_set_dict)
+    lst = list_other_set_dict.keys()
+    lst = sorted(lst,cmp=lambda x,y: similarityToUserSetComparison(user_set_dict['songs'],x['songs'],y['songs']) similarityToUserSetComparison(user_set_dict['artists'],x['artists',y['artists']]))
+    return lst
+
+#Helper function for comparing users based on similarity to user set
+def similarityToUserSetComparison(user_set,set_A,set_B)
+    return len(set_A.intersection(user_set)) - len(set_B.intersection(user_set))
